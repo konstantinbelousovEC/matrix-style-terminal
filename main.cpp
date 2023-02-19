@@ -1,30 +1,20 @@
-#include "curses.h"
 #include "ui.h"
 #include "matrix.h"
 
 #include <unistd.h>
-#include <cstdlib>
 
-#define ITERATIONS 300
 #define REFRESH_DELAY 50000L
+#define MAXX 160
+#define MAXY 50
+#define NUM_DRIPS 250
 
 int main() {
-    if (!init_ui()) {
-        return EXIT_FAILURE;
-    }
 
-    matrix_init();
-//    for (int i = 0; i < ITERATIONS; i++) {
-//        matrix_update();
-//        show_matrix();
-//        usleep(REFRESH_DELAY);
-//    }
+    UI ui;
+    Matrix matrix{MAXX, MAXY, NUM_DRIPS};
     while (true) {
-        matrix_update();
-        show_matrix();
+        matrix.UpdateMatrix();
+        matrix.ShowMatrix();
         usleep(REFRESH_DELAY);
     }
-
-    cleanup_ui();
-    return EXIT_SUCCESS;
 }
