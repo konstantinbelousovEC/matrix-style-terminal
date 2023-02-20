@@ -2,7 +2,6 @@
 
 #include "curses.h"
 #include <vector>
-#include <array>
 
 struct Settings {
     int max_x = 160;
@@ -35,8 +34,8 @@ public:
 private:
     std::vector<std::vector<Cell>> matrix_;
     std::vector<Drip> drips_;
-    constexpr static Settings settings_;
-    std::array<int, settings_.max_intensity + 1> color_map_ = {1,2,2,3,3,3,4,4,4,4,4,5,3,6};
+    Settings settings_;
+    std::vector<int> color_map_ = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 5, 3, 6};
 
     void UpdateDrips();
     double RandomProbability();
